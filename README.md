@@ -1,11 +1,5 @@
-# Clicker-app
-Repository for android clicker game.
+# Google Sign-In for Android
 
-# Features
-* You can click as fast as you like to generate income.
-* See your achievements in leaderbord.
-* The application collects statistics about the time spent in the game.
+Simple implementation of authentication with Google in an Android application.
 
-# Developers
-[Anita](https://github.com/siberiacalling)
-[Konstantin](https://github.com/kotguru)
+[Video Tutorial](https://alvarez.tech/videos/android/login-con-google/)
