@@ -1,10 +1,12 @@
 package com.example.clicker.main;
 
 import android.media.MediaPlayer;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.clicker.AppActions;
 import com.example.clicker.ClickerApplication;
@@ -18,6 +20,13 @@ import com.example.clicker.game.GameView;
 import com.example.clicker.leaderboard.LeaderboardView;
 import com.example.clicker.settings.SettingsView;
 import com.example.clicker.shop.ShopView;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.OptionalPendingResult;
+import com.google.android.gms.common.api.ResultCallback;
 
 public class MainActivity extends AppCompatActivity implements Router, AppActions {
     String tag = MainActivity.class.getName();
@@ -30,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements Router, AppAction
     private FragmentManager fragmentManager = getSupportFragmentManager();
 
     private GameView gameView;
+    private GoogleApiClient googleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +55,45 @@ public class MainActivity extends AppCompatActivity implements Router, AppAction
         musicOnMainSound();
 
         gameView = new GameView();
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        googleApiClient = new GoogleApiClient.Builder(this)
+                //.enableAutoManage(this, this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(googleApiClient);
+        if (opr.isDone()) {
+            GoogleSignInResult result = opr.get();
+            handleSignInResult(result);
+        } else {
+            opr.setResultCallback(new ResultCallback<GoogleSignInResult>() {
+                @Override
+                public void onResult(@NonNull GoogleSignInResult googleSignInResult) {
+                    handleSignInResult(googleSignInResult);
+                }
+            });
+        }
+    }
+
+    private void handleSignInResult(GoogleSignInResult result) {
+        if (result.isSuccess()) {
+            Toast.makeText(getApplicationContext(), "Success login", Toast.LENGTH_SHORT).show();
+
+            //GoogleSignInAccount account = result.getSignInAccount();
+
+        } else {
+            Toast.makeText(getApplicationContext(), "Not success login", Toast.LENGTH_SHORT).show();
+
+            // goLogInScreen();
+        }
+    }
     private void clearMusicPlayer() {
         if (musicPlayer != null) {
             musicPlayer.stop();
