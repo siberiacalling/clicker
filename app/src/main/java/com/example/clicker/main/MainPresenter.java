@@ -9,12 +9,10 @@ public class MainPresenter implements MainContract.Presenter {
     private final String tag = MainPresenter.class.getName();
 
     private MainContract.View mView;
-    private MainContract.Repository mRepository;
 
 
-    MainPresenter(MainContract.View view, MainContract.Repository repository) {
+    MainPresenter(MainContract.View view) {
         this.mView = view;
-        this.mRepository = repository;
     }
 
     @Override
@@ -34,7 +32,7 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     @Override
-    public void onLeaderboardButtonClicked() {
-        mView.showLeaderboardScreen();
+    public void onAccountButtonClicked() {
+        mView.showAccountScreen();
     }
 }

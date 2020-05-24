@@ -6,11 +6,6 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,11 +13,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.example.clicker.R;
 import com.example.clicker.Router;
-import com.example.clicker.data.UserRepositoryImpl;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -46,7 +43,7 @@ public class MainFragment extends Fragment implements MainContract.View {
     private com.google.android.gms.common.SignInButton googleLoginButton;
 
     private ImageButton achievementsButton;
-    private ImageButton leaderboardButton;
+    private ImageButton accountButton;
     View view;
 
     private GoogleSignInClient mGoogleSignInClient;
@@ -58,11 +55,13 @@ public class MainFragment extends Fragment implements MainContract.View {
     int RC_SIGN_IN = 1;
 
     OnDataPass dataPasser;
+
     public interface OnDataPass {
         public void onDataPass(String dataType, String data);
     }
 
     OnImagePass imgPasser;
+
     public interface OnImagePass {
         public void onImagePass(Uri personPhoto);
     }
@@ -72,13 +71,14 @@ public class MainFragment extends Fragment implements MainContract.View {
         super.onAttach(context);
         activity = getActivity();
         dataPasser = (OnDataPass) context;
-        imgPasser =  (OnImagePass) context;
+        imgPasser = (OnImagePass) context;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = new MainPresenter(this, new UserRepositoryImpl(getContext().getApplicationContext()));
+        //presenter = new MainPresenter(this, new UserRepositoryImpl(getContext().getApplicationContext()));
+        presenter = new MainPresenter(this);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.server_client_id))
@@ -174,11 +174,11 @@ public class MainFragment extends Fragment implements MainContract.View {
             }
         });
 
-        leaderboardButton = view.findViewById(R.id.leaderboard_button);
-        leaderboardButton.setOnClickListener(new View.OnClickListener() {
+        accountButton = view.findViewById(R.id.account_button);
+        accountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.onLeaderboardButtonClicked();
+                presenter.onAccountButtonClicked();
             }
         });
 
@@ -252,10 +252,6 @@ public class MainFragment extends Fragment implements MainContract.View {
 
     @Override
     public void showAchievementsScreen() {
-        passData("personName", personName);
-        passData("personEmail", personEmail);
-        passImage(personPhoto);
-
         Router router = (Router) getActivity();
         if (router != null) {
             router.openAchievementsScreen();
@@ -265,10 +261,14 @@ public class MainFragment extends Fragment implements MainContract.View {
     }
 
     @Override
-    public void showLeaderboardScreen() {
+    public void showAccountScreen() {
+        passData("personName", personName);
+        passData("personEmail", personEmail);
+        passImage(personPhoto);
+
         Router router = (Router) getActivity();
         if (router != null) {
-            router.openLeaderboardScreen();
+            router.openAccountScreen();
         } else {
             Log.e(logTag, "This activity is not a Router");
         }

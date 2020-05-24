@@ -11,7 +11,7 @@ public interface MainContract {
         void showScreenGame();
         void showSettingsScreen();
         void showAchievementsScreen();
-        void showLeaderboardScreen();
+        void showAccountScreen();
         Context getViewContext();
         Context getAppContext();
     }
@@ -20,11 +20,11 @@ public interface MainContract {
         void onStartGameButtonClicked();
         void onSettingsButtonClicked();
         void onAchievementsButtonClicked();
-        void onLeaderboardButtonClicked();
+        void onAccountButtonClicked();
     }
-
+/*
     interface Repository {
         void wasAuthorized(final BaseCallback callback);
     }
-
+*/
 }

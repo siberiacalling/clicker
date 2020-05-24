@@ -14,15 +14,11 @@ import com.example.clicker.ClickerApplication;
 import com.example.clicker.R;
 import com.example.clicker.Router;
 import com.example.clicker.achievements.AchievementsView;
-import com.example.clicker.authorization.AuthContract;
-import com.example.clicker.authorization.AuthView;
 import com.example.clicker.data.PlayerRepository;
 import com.example.clicker.game.GameView;
-import com.example.clicker.leaderboard.LeaderboardView;
+import com.example.clicker.account.AccountView;
 import com.example.clicker.settings.SettingsView;
 import com.example.clicker.shop.ShopView;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
 public class MainActivity extends AppCompatActivity implements Router, AppActions, MainFragment.OnDataPass, MainFragment.OnImagePass {
     String tag = MainActivity.class.getName();
@@ -36,20 +32,24 @@ public class MainActivity extends AppCompatActivity implements Router, AppAction
 
     private GameView gameView;
 
+    String personEmail;
+    String personName;
+    Uri personPhoto;
+
     @Override
     public void onDataPass(String dataType, String data) {
-        if (dataType == "personEmail"){
-            Toast.makeText(this,"Email: " + data, Toast.LENGTH_SHORT).show();
+        if (dataType.equals("personEmail")){
+            personEmail = data;
         }
 
-        if (dataType == "personName"){
-            Toast.makeText(this,"Name: " + data, Toast.LENGTH_SHORT).show();
+        if (dataType.equals("personName")){
+            personName = data;
         }
     }
 
     @Override
-    public void onImagePass(Uri personPhoto) {
-        Toast.makeText(this,"Image", Toast.LENGTH_SHORT).show();
+    public void onImagePass(Uri photo) {
+        personPhoto = photo;
     }
 
     @Override
@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity implements Router, AppAction
         gameView = new GameView();
 
     }
-
 
     private void clearMusicPlayer() {
         if (musicPlayer != null) {
@@ -112,35 +111,7 @@ public class MainActivity extends AppCompatActivity implements Router, AppAction
             Log.d(tag, "musicOnMainSound: soundOff");
         }
     }
-/*
-    @Override
-    public void openSignUpScreen() {
-        Bundle args = new Bundle();
-        args.putString(AuthContract.authMethodKey, AuthContract.authMethodSignUp);
 
-        AuthView fragment = new AuthView();
-        fragment.setArguments(args);
-
-        fragmentManager.beginTransaction()
-                .addToBackStack(null)
-                .replace(R.id.main_activity, fragment)
-                .commit();
-    }
-
-    @Override
-    public void openLoginScreen() {
-        Bundle args = new Bundle();
-        args.putString(AuthContract.authMethodKey, AuthContract.authMethodLogin);
-
-        AuthView fragment = new AuthView();
-        fragment.setArguments(args);
-
-        fragmentManager.beginTransaction()
-                .addToBackStack(null)
-                .replace(R.id.main_activity, fragment)
-                .commit();
-    }
-*/
     @Override
     public void openSettingsScreen() {
         fragmentManager.beginTransaction()
@@ -151,23 +122,24 @@ public class MainActivity extends AppCompatActivity implements Router, AppAction
 
     @Override
     public void openAchievementsScreen() {
-        Bundle bundle = new Bundle();
-        bundle.putString("userName", "1488");
-
-        AchievementsView achievementsFragment = new AchievementsView();
-        achievementsFragment.setArguments(bundle);
-
         fragmentManager.beginTransaction()
                 .addToBackStack(null)
-                .replace(R.id.main_activity, achievementsFragment)
+                .replace(R.id.main_activity, new AchievementsView())
                 .commit();
     }
 
     @Override
-    public void openLeaderboardScreen() {
+    public void openAccountScreen() {
+        Bundle bundle = new Bundle();
+        bundle.putString("personEmail", personEmail);
+        bundle.putString("personName", personName);
+
+        AccountView accountView = new AccountView();
+        accountView.setArguments(bundle);
+
         fragmentManager.beginTransaction()
                 .addToBackStack(null)
-                .replace(R.id.main_activity, new LeaderboardView())
+                .replace(R.id.main_activity, accountView)
                 .commit();
     }
 

@@ -85,7 +85,7 @@
         android:gravity="bottom">
 
         <ImageButton
-            android:id="@+id/achievements_button"
+            android:id="@+id/account_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:contentDescription="@string/touch_area"
@@ -95,7 +95,7 @@
             />
 
         <ImageButton
-            android:id="@+id/leaderboard_button"
+            android:id="@+id/achievements_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"

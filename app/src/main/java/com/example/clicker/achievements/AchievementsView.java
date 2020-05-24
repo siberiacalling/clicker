@@ -40,16 +40,7 @@ public class AchievementsView extends Fragment implements AchievementsContract.V
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter = new AchievementsPresenter(this);
-
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            UserName = bundle.getString("userName");
-            Toast.makeText(activity, UserName, Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(activity, "empty UserName", Toast.LENGTH_SHORT).show();
-        }
-
-    }
+   }
 
     @Nullable
     @Override
