@@ -88,17 +88,16 @@ public class ClickerApplication extends Application {
     public void addBasicUpgradesAndAchievements() {
         UpgradeDao dao = mDbRepository.getUpgradeDao();
         Upgrade[] basicUpgrades = {
-                new Upgrade(1000, "upgrade", "+", 0, 1000, 5, "img/tushenka.webp"),
-                new Upgrade(10000, "upgrade", "100$ / 5s", 0, 5000, 100, "img/shop_man.jpg"),
-                new Upgrade(2000, "upgrade", "HUIWIUIASHD / 2s", 0, 2000, 12, "img/shop_coffee.svg"),
-                new Upgrade(20000, "upgrade", "220$ / 8s", 0, 8000, 220, "img/shop_man.jpg"),
-                new Upgrade(4000, "upgrade", "20$ / 3s", 0, 3000, 20, "img/shop_coffee.svg"),
-                new Upgrade(30000, "upgrade", "400$ / 12s", 0, 12000, 400, "img/shop_man.jpg"),
+                new Upgrade(1000, "upgrade", "5$ / 1s", 0, 1000, 5, "img/new_1.png"),
+                new Upgrade(10000, "upgrade", "100$ / 5s", 0, 5000, 100, "img/new_2.png"),
+                new Upgrade(2000, "upgrade", "1000$ / 2s", 0, 2000, 12, "img/new_3.png"),
+                new Upgrade(20000, "upgrade", "220$ / 8s", 0, 8000, 220, "img/pivo.png"),
+                new Upgrade(4000, "upgrade", "20$ / 3s", 0, 3000, 20, "img/new_4.png"),
+                new Upgrade(30000, "upgrade", "400$ / 12s", 0, 12000, 400, "img/new_5.png"),
         };
         Upgrade[] basicSpeeders = {
-//                new Upgrade(10000, "speeder", "+10$ when you press", 0, 0, 1, "img/tushenka.webp")
-                new Upgrade(50000, "speeder", "Inc. skill 2 times", 0, 0, 2, "img/telegram.svg"),
-                new Upgrade(200000, "speeder", "Inc. skill 3 times", 0, 0, 3, "img/github.svg"),
+                new Upgrade(50000, "speeder", "Inc. skill 2 times", 0, 0, 2, "img/tushenka.webp"),
+//                new Upgrade(200000, "speeder", "Inc. skill 3 times", 0, 0, 3, "img/github.svg"),
         };
         Upgrade[] basicWorkers = {
                 new Upgrade(2000, "worker", "ничего", 0, 5000, 0, "img/default_stalker.png"),
