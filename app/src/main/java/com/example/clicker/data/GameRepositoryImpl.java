@@ -36,9 +36,9 @@ public class GameRepositoryImpl implements GameContract.Repository, ShopContract
     private boolean noApiSyncYet = true; // scores
 
     private final String[] workerPicPaths = {
-            "img/default_stalker.png",
-            "img/stalker_lvl1.png",
-            "img/stalker_lvl2.png"
+            "img/default_stalker.webp",
+            "img/stalker_lvl1.webp",
+            "img/stalker_lvl2.webp"
     };
 
     public GameRepositoryImpl(Context context) {

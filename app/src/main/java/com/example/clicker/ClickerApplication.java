@@ -88,23 +88,23 @@ public class ClickerApplication extends Application {
     public void addBasicUpgradesAndAchievements() {
         UpgradeDao dao = mDbRepository.getUpgradeDao();
         Upgrade[] basicUpgrades = {
-                new Upgrade(100, "upgrade", "5$ / 1s", 0, 1000, 5, "img/new_1.png"),
-                new Upgrade(500, "upgrade", "100$ / 5s", 0, 5000, 100, "img/new_2.png"),
-                new Upgrade(2000, "upgrade", "1000$ / 2s", 0, 2000, 12, "img/new_3.png"),
-                new Upgrade(25, "upgrade", "220$ / 8s", 0, 8000, 220, "img/pivo.png"),
-                new Upgrade(1000, "upgrade", "20$ / 3s", 0, 3000, 20, "img/new_4.png"),
-                new Upgrade(3000000, "upgrade", "400$ / 12s", 0, 12000, 400, "img/new_5.png"),
+                new Upgrade(100, "upgrade", "5$ / 1s", 0, 1000, 500, "img/new_1.webp"),
+                new Upgrade(500, "upgrade", "100$ / 5s", 0, 5000, 100, "img/new_2.webp"),
+                new Upgrade(2000, "upgrade", "1000$ / 2s", 0, 2000, 12, "img/new_3.webp"),
+                new Upgrade(25, "upgrade", "220$ / 8s", 0, 8000, 220, "img/pivo.webp"),
+                new Upgrade(1000, "upgrade", "20$ / 3s", 0, 3000, 20, "img/new_4.webp"),
+                new Upgrade(3000000, "upgrade", "400$ / 12s", 0, 12000, 400, "img/new_5.webp"),
         };
         Upgrade[] basicSpeeders = {
                 new Upgrade(50000, "speeder", "Inc. skill 2 times", 0, 0, 2, "img/tushenka.webp"),
 //                new Upgrade(200000, "speeder", "Inc. skill 3 times", 0, 0, 3, "img/github.svg"),
         };
         Upgrade[] basicWorkers = {
-                new Upgrade(2000, "worker", "ничего", 0, 5000, 0, "img/default_stalker.png"),
-                new Upgrade(2000, "worker", "ничего", 0, 5000, 0, "img/default_stalker.png"),
-                new Upgrade(2000, "worker", "ничего", 0, 5000, 0, "img/default_stalker.png"),
-                new Upgrade(2000, "worker", "ничего", 0, 5000, 0, "img/default_stalker.png"),
-                new Upgrade(2000, "worker", "ничего", 0, 5000, 0, "img/default_stalker.png")
+                new Upgrade(2000, "worker", "ничего", 0, 5000, 0, "img/default_stalker.webp"),
+                new Upgrade(2000, "worker", "ничего", 0, 5000, 0, "img/default_stalker.webp"),
+                new Upgrade(2000, "worker", "ничего", 0, 5000, 0, "img/default_stalker.webp"),
+                new Upgrade(2000, "worker", "ничего", 0, 5000, 0, "img/default_stalker.webp"),
+                new Upgrade(2000, "worker", "ничего", 0, 5000, 0, "img/default_stalker.webp")
         };
 
         // TODO: Only for debug!

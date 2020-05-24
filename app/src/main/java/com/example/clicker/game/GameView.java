@@ -226,7 +226,7 @@ public class GameView extends Fragment implements GameContract.View {
 
     @Override
     public void setMoney(int money) {
-        moneyValView.setText(money + " kills");
+        moneyValView.setText(money + "$");
     }
 
     @Override
