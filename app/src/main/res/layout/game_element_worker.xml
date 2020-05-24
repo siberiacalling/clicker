@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="120dp"
-    android:layout_height="120dp">
+    android:layout_width="70sp"
+    android:layout_height="70sp">
     <ImageButton
         android:id="@+id/worker_preview"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="70sp"
+        android:layout_height="70sp"
         android:background="@null"
         android:contentDescription="@string/workers"
         android:scaleType="centerCrop" />
     <ImageButton
         android:id="@+id/push_button"
         android:visibility="invisible"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="70sp"
+        android:layout_height="70sp"
         android:contentDescription="@string/push"
         android:layout_gravity="start"
         android:background="@null"

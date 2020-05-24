@@ -6,6 +6,7 @@ import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
+import android.icu.text.TimeZoneFormat;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import androidx.annotation.NonNull;
@@ -32,7 +33,6 @@ import com.example.clicker.game.objects.RunningGameClickableObj;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-//import com.example.clicker.game.objects.GameFollowingObj;
 
 
 public class GameView extends Fragment implements GameContract.View {
@@ -56,10 +56,6 @@ public class GameView extends Fragment implements GameContract.View {
     private ValueAnimator moneyViewAnimator;
     private WebView monitorView;
     private CountDownTimer timerWorkUpgrades;
-
-    private GameClickableObj gameClickableObj;
-    private RunningGameClickableObj runningGameClickableObj;
-//    private GameFollowingObj followingObj;
 
     @Nullable
     @Override
@@ -112,8 +108,6 @@ public class GameView extends Fragment implements GameContract.View {
         workersContainer = mView.findViewById(R.id.workers_container);
         workerUpgradeDialogView = inflater.inflate(R.layout.window_worker_upgrade_dialog, null);
 
-//        workersContainer.addView(inflater.inflate(R.layout.game_element_worker, null, false));
-
         touchLocation = mView.findViewById(R.id.touch_location);
 
         monitorView = mView.findViewById(R.id.monitor);
@@ -150,19 +144,6 @@ public class GameView extends Fragment implements GameContract.View {
         super.onViewCreated(view, savedInstanceState);
         Log.d(tag, "onViewCreated");
         presenter.onGameStart();
-        createIssueButton();
-        createBugButton();
-        /*presenter.registerPlayerBug(new BaseCallback() {
-            @Override
-            public void onSuccess() {
-
-            }
-
-            @Override
-            public void onError() {
-
-            }
-        });*/
     }
 
     @Override
@@ -217,39 +198,16 @@ public class GameView extends Fragment implements GameContract.View {
 
     @Override
     public void pauseGameObjects() {
-        runningGameClickableObj.pause();
-        gameClickableObj.pause();
     }
 
     @Override
     public void resumeGameObjects() {
-        runningGameClickableObj.resume();
-        gameClickableObj.resume();
-    }
-
-    private void createIssueButton() {
-        gameClickableObj = new GameClickableObj(touchLocation, presenter,
-                mView.findViewById(R.id.issue), 60);
-        gameClickableObj.run();
-    }
-
-    private void createBugButton() {
-        int[] colorSet = {
-                Color.argb(80, 0, 255, 0),
-                Color.argb(80, 160, 214, 0),
-                Color.argb(80, 215, 167, 0),
-                Color.argb(80, 246, 109, 0),
-                Color.argb(80, 255, 0, 0)
-        };
-        runningGameClickableObj = new RunningGameClickableObj(touchLocation, presenter,
-                mView.findViewById(R.id.bug), 30, 5, 10, colorSet);
-        runningGameClickableObj.run();
     }
 
     private TextView getRunningMoneyView() {
         TextView view = new TextView(touchLocation.getContext());
         view.setZ(10);
-        view.setTextColor(Color.argb(255, 0, 130, 47));
+        view.setTextColor(Color.argb(255, 255, 255, 255));
         view.setTextSize(25);
 
         return view;
@@ -268,7 +226,7 @@ public class GameView extends Fragment implements GameContract.View {
 
     @Override
     public void setMoney(int money) {
-        moneyValView.setText("$ " + money);
+        moneyValView.setText(money + " kills");
     }
 
     @Override
@@ -278,7 +236,7 @@ public class GameView extends Fragment implements GameContract.View {
         int k_y = random.nextBoolean()? 1: -1;
         view.setX(x+k_x*70);
         view.setY(y+k_y*50);
-        view.setText("$ " + val);
+        view.setText("+ " + val);
         touchLocation.addView(view);
 //        moneyValView.setTextSize(30);
 
@@ -319,8 +277,6 @@ public class GameView extends Fragment implements GameContract.View {
     public void onDestroy() {
         Log.d(tag, "onDestroy");
         presenter.onGamePause();
-        runningGameClickableObj.destroy();
-        gameClickableObj.destroy();
         super.onDestroy();
     }
 }

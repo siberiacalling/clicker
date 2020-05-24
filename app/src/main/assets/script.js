@@ -1,8 +1,3 @@
-/*
-*(c) Copyright 2011 Simone Masiero. Some Rights Reserved. 
-*This work is licensed under a Creative Commons Attribution-Noncommercial-Share Alike 3.0 License
-*/
-
 $(
     function () {
         document.getElementById("console").addEventListener("touchstart", (event) => {
