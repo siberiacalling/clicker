@@ -88,27 +88,28 @@ public class ClickerApplication extends Application {
     public void addBasicUpgradesAndAchievements() {
         UpgradeDao dao = mDbRepository.getUpgradeDao();
         Upgrade[] basicUpgrades = {
-                new Upgrade(1000, "upgrade", "5$ / 1s", 0, 1000, 5, "img/shop_coffee.svg"),
+                new Upgrade(1000, "upgrade", "+", 0, 1000, 5, "img/tushenka.webp"),
                 new Upgrade(10000, "upgrade", "100$ / 5s", 0, 5000, 100, "img/shop_man.jpg"),
-                new Upgrade(2000, "upgrade", "12$ / 2s", 0, 2000, 12, "img/shop_coffee.svg"),
+                new Upgrade(2000, "upgrade", "HUIWIUIASHD / 2s", 0, 2000, 12, "img/shop_coffee.svg"),
                 new Upgrade(20000, "upgrade", "220$ / 8s", 0, 8000, 220, "img/shop_man.jpg"),
                 new Upgrade(4000, "upgrade", "20$ / 3s", 0, 3000, 20, "img/shop_coffee.svg"),
                 new Upgrade(30000, "upgrade", "400$ / 12s", 0, 12000, 400, "img/shop_man.jpg"),
         };
         Upgrade[] basicSpeeders = {
+//                new Upgrade(10000, "speeder", "+10$ when you press", 0, 0, 1, "img/tushenka.webp")
                 new Upgrade(50000, "speeder", "Inc. skill 2 times", 0, 0, 2, "img/telegram.svg"),
                 new Upgrade(200000, "speeder", "Inc. skill 3 times", 0, 0, 3, "img/github.svg"),
         };
         Upgrade[] basicWorkers = {
-                new Upgrade(2000, "worker", "ничего", 0, 5000, 0, "img/worker_avatar.png"),
-                new Upgrade(2000, "worker", "ничего", 0, 5000, 0, "img/worker_avatar.png"),
+                new Upgrade(2000, "worker", "ничего", 0, 5000, 0, "img/stalker.png"),
+                new Upgrade(2000, "worker", "ничего", 0, 5000, 0, "img/programmer_lvl1.svg"),
                 new Upgrade(2000, "worker", "ничего", 0, 5000, 0, "img/worker_avatar.png"),
                 new Upgrade(2000, "worker", "ничего", 0, 5000, 0, "img/worker_avatar.png"),
                 new Upgrade(2000, "worker", "ничего", 0, 5000, 0, "img/worker_avatar.png")
         };
 
         // TODO: Only for debug!
-        // mDbRepository.clearAllTables();
+         mDbRepository.clearAllTables();
 
         List<Upgrade> upgrades = dao.allUpgrades();
         if (upgrades.isEmpty()) {

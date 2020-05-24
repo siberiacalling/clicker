@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="workerIndent">6sp</dimen>
+    <dimen name="widh">50dp</dimen>
+    <dimen name="topmarg">5dp</dimen>
 </resources>

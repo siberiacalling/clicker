@@ -14,10 +14,10 @@
 
         <Button
             android:id="@+id/button_shop"
-            android:layout_width="50dp"
+            android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
-            android:background="@drawable/store" />
+            android:background="@drawable/onehundredbucks" />
 
         <TextView
             android:id="@+id/money_val"
@@ -42,39 +42,39 @@
             <include
                 android:id="@+id/worker_1"
                 layout="@layout/game_element_worker"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/widh"
+                android:layout_height="@dimen/widh"
                 android:layout_marginEnd="@dimen/workerIndent"
                 android:layout_toStartOf="@+id/worker_2" />
 
             <include
                 android:id="@+id/worker_2"
                 layout="@layout/game_element_worker"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/widh"
+                android:layout_height="@dimen/widh"
                 android:layout_marginEnd="@dimen/workerIndent" />
 
             <include
                 android:id="@+id/worker_3"
                 layout="@layout/game_element_worker"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/widh"
+                android:layout_height="@dimen/widh"
                 android:layout_marginEnd="@dimen/workerIndent"
                 android:layout_toEndOf="@+id/worker_2" />
 
             <include
                 android:id="@+id/worker_4"
                 layout="@layout/game_element_worker"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/widh"
+                android:layout_height="@dimen/widh"
                 android:layout_marginEnd="@dimen/workerIndent"
                 android:layout_toEndOf="@+id/worker_3" />
 
             <include
                 android:id="@+id/worker_5"
                 layout="@layout/game_element_worker"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/widh"
+                android:layout_height="@dimen/widh"
                 android:layout_marginEnd="@dimen/workerIndent"
                 android:layout_toEndOf="@+id/worker_4" />
 
