@@ -1,7 +1,7 @@
 package com.example.clicker.data;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.example.clicker.data.api.ApiRepository;
 import com.example.clicker.data.api.UserApi;

@@ -9,8 +9,6 @@ public interface MainContract {
     interface View {
         void hideAuthorizationButtons();
         void showScreenGame();
-        void showLoginScreen();
-        void showSignUpScreen();
         void showSettingsScreen();
         void showAchievementsScreen();
         void showLeaderboardScreen();
@@ -20,12 +18,9 @@ public interface MainContract {
 
     interface Presenter {
         void onStartGameButtonClicked();
-        void onLoginButtonClicked();
-        void onSignUpButtonClicked();
         void onSettingsButtonClicked();
         void onAchievementsButtonClicked();
         void onLeaderboardButtonClicked();
-        void checkIsLoggedIn();
     }
 
     interface Repository {

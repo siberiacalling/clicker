@@ -1,11 +1,16 @@
 package com.example.clicker.main;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +18,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.clicker.R;
 import com.example.clicker.Router;
 import com.example.clicker.data.UserRepositoryImpl;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 import java.util.Objects;
 
@@ -29,20 +42,45 @@ public class MainFragment extends Fragment implements MainContract.View {
     private Button signUpButton;
     private Button gameStartButton;
     private Button settingsButton;
+    private Button LogoutButton;
+    private com.google.android.gms.common.SignInButton googleLoginButton;
+
     private ImageButton achievementsButton;
     private ImageButton leaderboardButton;
+    View view;
 
+    private GoogleSignInClient mGoogleSignInClient;
+    Activity activity;
+    int RC_SIGN_IN = 1;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        activity = getActivity();
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         presenter = new MainPresenter(this, new UserRepositoryImpl(getContext().getApplicationContext()));
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.server_client_id))
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(activity, gso);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(activity);
+        updateUI(account);
     }
 
     @Override
@@ -58,7 +96,7 @@ public class MainFragment extends Fragment implements MainContract.View {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        view = inflater.inflate(R.layout.fragment_main, container, false);
 
         TextView nameGame = view.findViewById(R.id.game_name);
         Typeface customFont = Typeface.createFromAsset(
@@ -74,19 +112,25 @@ public class MainFragment extends Fragment implements MainContract.View {
             }
         });
 
-        loginButton = view.findViewById(R.id.button_login);
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        googleLoginButton = view.findViewById(R.id.sign_in_button);
+        googleLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.onLoginButtonClicked();
+                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+                startActivityForResult(signInIntent, RC_SIGN_IN);
             }
         });
 
-        signUpButton = view.findViewById(R.id.button_signUp);
-        signUpButton.setOnClickListener(new View.OnClickListener() {
+        LogoutButton = view.findViewById(R.id.button_logout);
+        LogoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.onSignUpButtonClicked();
+                mGoogleSignInClient.signOut().addOnCompleteListener(activity, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        updateUI(null);
+                    }
+                });
             }
         });
 
@@ -114,9 +158,42 @@ public class MainFragment extends Fragment implements MainContract.View {
             }
         });
 
-        presenter.checkIsLoggedIn();
-
         return view;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
+    }
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            updateUI(account);
+        } catch (ApiException e) {
+            Log.w("REGISTRATION", "signInResult:failed code=" + e.getStatusCode());
+            updateUI(null);
+        }
+    }
+
+    private void updateUI(GoogleSignInAccount account) {
+        TextView textView = view.findViewById(R.id.player_name);
+
+        if (account == null) {
+            googleLoginButton.setVisibility(View.VISIBLE);
+            LogoutButton.setVisibility(View.GONE);
+            textView.setVisibility(View.INVISIBLE);
+        } else {
+            googleLoginButton.setVisibility(View.GONE);
+            LogoutButton.setVisibility(View.VISIBLE);
+            String personName = account.getDisplayName();
+            textView.setVisibility(View.VISIBLE);
+            textView.setText("Welcome, " + personName + "!");
+        }
     }
 
     @Override
@@ -130,26 +207,6 @@ public class MainFragment extends Fragment implements MainContract.View {
         Router router = (Router) getActivity();
         if (router != null) {
             router.openGameScreen();
-        } else {
-            Log.e(logTag, "This activity is not a Router");
-        }
-    }
-
-    @Override
-    public void showLoginScreen() {
-        Router router = (Router) getActivity();
-        if (router != null) {
-            router.openLoginScreen();
-        } else {
-            Log.e(logTag, "This activity is not a Router");
-        }
-    }
-
-    @Override
-    public void showSignUpScreen() {
-        Router router = (Router) getActivity();
-        if (router != null) {
-            router.openSignUpScreen();
         } else {
             Log.e(logTag, "This activity is not a Router");
         }

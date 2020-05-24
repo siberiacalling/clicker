@@ -2,7 +2,7 @@ package com.example.clicker.shop;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import com.example.clicker.data.sqlite.Upgrade;

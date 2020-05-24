@@ -1,6 +1,6 @@
 package com.example.clicker.data;
 
-import android.support.annotation.MainThread;
+import androidx.annotation.MainThread;
 
 public interface BaseCallback {
     @MainThread

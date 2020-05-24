@@ -1,7 +1,7 @@
 package com.example.clicker.achievements;
 
 import android.content.Context;
-import android.support.v4.util.Pair;
+import androidx.core.util.Pair;
 import android.util.Log;
 import android.widget.Toast;
 

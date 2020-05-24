@@ -1,10 +1,11 @@
 package com.example.clicker.main;
 
 import android.media.MediaPlayer;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.clicker.AppActions;
 import com.example.clicker.ClickerApplication;
@@ -18,6 +19,8 @@ import com.example.clicker.game.GameView;
 import com.example.clicker.leaderboard.LeaderboardView;
 import com.example.clicker.settings.SettingsView;
 import com.example.clicker.shop.ShopView;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
 public class MainActivity extends AppCompatActivity implements Router, AppActions {
     String tag = MainActivity.class.getName();
@@ -45,7 +48,9 @@ public class MainActivity extends AppCompatActivity implements Router, AppAction
         musicOnMainSound();
 
         gameView = new GameView();
+
     }
+
 
     private void clearMusicPlayer() {
         if (musicPlayer != null) {
