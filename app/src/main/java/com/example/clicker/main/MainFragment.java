@@ -51,12 +51,28 @@ public class MainFragment extends Fragment implements MainContract.View {
 
     private GoogleSignInClient mGoogleSignInClient;
     Activity activity;
+    String personName;
+    String personEmail;
+    Uri personPhoto;
+
     int RC_SIGN_IN = 1;
+
+    OnDataPass dataPasser;
+    public interface OnDataPass {
+        public void onDataPass(String dataType, String data);
+    }
+
+    OnImagePass imgPasser;
+    public interface OnImagePass {
+        public void onImagePass(Uri personPhoto);
+    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         activity = getActivity();
+        dataPasser = (OnDataPass) context;
+        imgPasser =  (OnImagePass) context;
     }
 
     @Override
@@ -91,6 +107,14 @@ public class MainFragment extends Fragment implements MainContract.View {
     @Override
     public void onResume() {
         super.onResume();
+    }
+
+    public void passData(String dataType, String data) {
+        dataPasser.onDataPass(dataType, data);
+    }
+
+    public void passImage(Uri personPhoto) {
+        imgPasser.onImagePass(personPhoto);
     }
 
     @Nullable
@@ -190,7 +214,11 @@ public class MainFragment extends Fragment implements MainContract.View {
         } else {
             googleLoginButton.setVisibility(View.GONE);
             LogoutButton.setVisibility(View.VISIBLE);
-            String personName = account.getDisplayName();
+
+            personName = account.getDisplayName();
+            personEmail = account.getEmail();
+            personPhoto = account.getPhotoUrl();
+
             textView.setVisibility(View.VISIBLE);
             textView.setText("Welcome, " + personName + "!");
         }
@@ -224,6 +252,10 @@ public class MainFragment extends Fragment implements MainContract.View {
 
     @Override
     public void showAchievementsScreen() {
+        passData("personName", personName);
+        passData("personEmail", personEmail);
+        passImage(personPhoto);
+
         Router router = (Router) getActivity();
         if (router != null) {
             router.openAchievementsScreen();

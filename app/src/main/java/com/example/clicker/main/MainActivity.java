@@ -1,8 +1,10 @@
 package com.example.clicker.main;
 
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -22,7 +24,7 @@ import com.example.clicker.shop.ShopView;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
-public class MainActivity extends AppCompatActivity implements Router, AppActions {
+public class MainActivity extends AppCompatActivity implements Router, AppActions, MainFragment.OnDataPass, MainFragment.OnImagePass {
     String tag = MainActivity.class.getName();
 
     private MediaPlayer musicPlayer;
@@ -33,6 +35,22 @@ public class MainActivity extends AppCompatActivity implements Router, AppAction
     private FragmentManager fragmentManager = getSupportFragmentManager();
 
     private GameView gameView;
+
+    @Override
+    public void onDataPass(String dataType, String data) {
+        if (dataType == "personEmail"){
+            Toast.makeText(this,"Email: " + data, Toast.LENGTH_SHORT).show();
+        }
+
+        if (dataType == "personName"){
+            Toast.makeText(this,"Name: " + data, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onImagePass(Uri personPhoto) {
+        Toast.makeText(this,"Image", Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements Router, AppAction
             Log.d(tag, "musicOnMainSound: soundOff");
         }
     }
-
+/*
     @Override
     public void openSignUpScreen() {
         Bundle args = new Bundle();
@@ -122,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements Router, AppAction
                 .replace(R.id.main_activity, fragment)
                 .commit();
     }
-
+*/
     @Override
     public void openSettingsScreen() {
         fragmentManager.beginTransaction()
@@ -133,9 +151,15 @@ public class MainActivity extends AppCompatActivity implements Router, AppAction
 
     @Override
     public void openAchievementsScreen() {
+        Bundle bundle = new Bundle();
+        bundle.putString("userName", "1488");
+
+        AchievementsView achievementsFragment = new AchievementsView();
+        achievementsFragment.setArguments(bundle);
+
         fragmentManager.beginTransaction()
                 .addToBackStack(null)
-                .replace(R.id.main_activity, new AchievementsView())
+                .replace(R.id.main_activity, achievementsFragment)
                 .commit();
     }
 

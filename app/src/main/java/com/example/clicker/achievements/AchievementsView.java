@@ -1,5 +1,6 @@
 package com.example.clicker.achievements;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.clicker.R;
 import com.example.clicker.data.sqlite.Achievement;
@@ -25,12 +27,27 @@ public class AchievementsView extends Fragment implements AchievementsContract.V
     private AchievementsContract.Presenter mPresenter;
 
     private View mView;
+    private String UserName;
+
+    Activity activity;
+
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        activity = getActivity();
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mPresenter = new AchievementsPresenter(this);
+
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            UserName = bundle.getString("userName");
+            Toast.makeText(activity, UserName, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(activity, "empty UserName", Toast.LENGTH_SHORT).show();
+        }
 
     }
 

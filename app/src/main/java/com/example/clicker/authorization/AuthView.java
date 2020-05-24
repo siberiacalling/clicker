@@ -1,5 +1,7 @@
 package com.example.clicker.authorization;
 
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -30,8 +32,8 @@ public class AuthView extends Fragment implements AuthContract.View {
     private EditText passField;
     private Button authButton;
     private ProgressBar progressBar;
-
     private AuthContract.Presenter presenter;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

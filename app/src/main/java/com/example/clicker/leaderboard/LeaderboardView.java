@@ -1,17 +1,21 @@
 package com.example.clicker.leaderboard;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.clicker.R;
 import com.example.clicker.data.api.UserApi;
@@ -26,13 +30,12 @@ public class LeaderboardView extends Fragment implements LeaderboardContract.Vie
     private LeaderboardElementsAdapter leaderboardElementsAdapter;
 
     private LeaderboardContract.Presenter mPresenter;
-
     private View mView;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mPresenter = new LeaderboardPresenter(this);
 
     }
