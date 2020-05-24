@@ -206,7 +206,6 @@ public class MainFragment extends Fragment implements MainContract.View {
 
     private void updateUI(GoogleSignInAccount account) {
         TextView textView = view.findViewById(R.id.player_name);
-
         if (account == null) {
             googleLoginButton.setVisibility(View.VISIBLE);
             LogoutButton.setVisibility(View.GONE);

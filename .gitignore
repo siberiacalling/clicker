@@ -1,2 +1,5 @@
 .idea/
 .gradle/
+app/app.iml
+app/ANDROID-app.iml
+local.properties

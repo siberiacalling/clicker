@@ -129,8 +129,8 @@ public class RunningGameClickableObj extends BaseGameObj implements Runnable {
                 mView.setVisibility(View.VISIBLE);
                 runTimer = createNewRunTimer(lifetime, 500);
                 runTimer.start();
-                objAnimX.start();
-                objAnimY.start();
+//                objAnimX.start();
+//                objAnimY.start();
             }
         };
         appearanceTimer.start();
