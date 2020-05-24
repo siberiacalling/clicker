@@ -21,9 +21,9 @@ public interface AchievementsContract {
     interface Repository{
         interface AchievementCallback {
             void onSuccess(List<Achievement> achievementList);
-
             void onError();
         }
+
         interface AchievementProcCallback {
             void onSuccess(Map<String, AchievementsManager.AchievementProc> achievementList);
 

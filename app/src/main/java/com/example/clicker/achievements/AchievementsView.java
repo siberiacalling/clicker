@@ -8,6 +8,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +29,6 @@ public class AchievementsView extends Fragment implements AchievementsContract.V
     private AchievementsContract.Presenter mPresenter;
 
     private View mView;
-    private String UserName;
 
     Activity activity;
 
@@ -40,24 +41,20 @@ public class AchievementsView extends Fragment implements AchievementsContract.V
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter = new AchievementsPresenter(this);
-   }
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.achievements_container, container, false);
-
         layoutManager = new LinearLayoutManager(this.getContext());
-
         mPresenter.fetchAchievements();
-
         return mView;
     }
 
     @Override
     public void showAchievements(List<Achievement> achievements) {
         achievementsElementsAdapter = new AchievementsElementsAdapter(achievements);
-
         achievementsView = mView.findViewById(R.id.achievements_view);
         achievementsView.setAdapter(achievementsElementsAdapter);
         achievementsView.setLayoutManager(layoutManager);

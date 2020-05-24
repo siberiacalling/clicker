@@ -32,9 +32,9 @@ public class MainActivity extends AppCompatActivity implements Router, AppAction
 
     private GameView gameView;
 
-    String personEmail;
-    String personName;
-    Uri personPhoto;
+    private String personEmail;
+    private String personName;
+    private Uri personPhoto;
 
     @Override
     public void onDataPass(String dataType, String data) {
@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements Router, AppAction
         setContentView(R.layout.activity_main);
 
         playerRepository = ClickerApplication.from(getApplicationContext()).getPlayerRepository();
-
         fragmentManager.beginTransaction()
                 .replace(R.id.main_activity, new MainFragment())
                 .commit();
@@ -66,7 +65,6 @@ public class MainActivity extends AppCompatActivity implements Router, AppAction
         musicOnMainSound();
 
         gameView = new GameView();
-
     }
 
     private void clearMusicPlayer() {
@@ -133,6 +131,7 @@ public class MainActivity extends AppCompatActivity implements Router, AppAction
         Bundle bundle = new Bundle();
         bundle.putString("personEmail", personEmail);
         bundle.putString("personName", personName);
+        bundle.putString("uri", personPhoto.toString());
 
         AccountView accountView = new AccountView();
         accountView.setArguments(bundle);

@@ -11,10 +11,12 @@ public interface AccountContract {
         void showName();
         void showEmail();
         void showPhoto();
+        void showClicks(Integer clicks);
+        void showMoney(Integer money);
         Context getAppContext();
     }
 
     interface Presenter {
-        // void fetchLeaderboard();
+        void loadAchievements();
     }
 }

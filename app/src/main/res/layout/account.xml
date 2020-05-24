@@ -3,14 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/gradient_background"
+    >
 
     <TextView
         android:text="@string/account_title"
         android:layout_width="match_parent"
         android:layout_height="60sp"
         android:textAlignment="center"
-        android:textSize="40sp"/>
+        android:textSize="40sp"
+        android:textColor="@color/text_color"/>
 
     <View
         android:id="@+id/delimeter_view"
@@ -19,20 +22,50 @@
         android:layout_marginTop="1dp"
         android:background="#9F5A5353"/>
 
-    <TextView
-        android:id="@+id/connection_error"
-        android:text="@string/connection_problem_please_restart_page"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:visibility="gone"
-        android:background="#C62828"
-        android:textSize="20sp"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/leaderboard_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </androidx.recyclerview.widget.RecyclerView>
+        <ImageView
+            android:id="@+id/user_photo"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_margin="8dp" />
 
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="32sp"
+            android:textColor="@color/text_color_dark"/>
+
+        <TextView
+            android:id="@+id/user_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="20sp"
+            android:textColor="@color/text_color_dark"
+            android:layout_margin="20dp"/>
+
+        <TextView
+            android:id="@+id/user_clicks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="24sp"
+            android:textColor="@color/text_color_dark"/>
+
+        <TextView
+            android:id="@+id/user_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="24sp"
+            android:textColor="@color/text_color_dark"/>
+    </LinearLayout>
 </LinearLayout>

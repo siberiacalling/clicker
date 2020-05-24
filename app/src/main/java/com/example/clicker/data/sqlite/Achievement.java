@@ -1,7 +1,5 @@
 package com.example.clicker.data.sqlite;
 
-
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -14,8 +12,8 @@ public class Achievement {
     private String mType;
     private String mTitle;
     private String mDescription;
-    private int mGoal;
-    private int mProgress;
+    public int mGoal;
+    public int mProgress;
     private String mUnit;
     private boolean mIsDone;
     private String mImageTag;
@@ -33,6 +31,7 @@ public class Achievement {
     }
 
     public Achievement() {
+
     }
 
     public int getId() {
