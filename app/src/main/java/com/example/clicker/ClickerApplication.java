@@ -101,11 +101,11 @@ public class ClickerApplication extends Application {
                 new Upgrade(200000, "speeder", "Inc. skill 3 times", 0, 0, 3, "img/github.svg"),
         };
         Upgrade[] basicWorkers = {
-                new Upgrade(2000, "worker", "ничего", 0, 5000, 0, "img/stalker.png"),
-                new Upgrade(2000, "worker", "ничего", 0, 5000, 0, "img/programmer_lvl1.svg"),
-                new Upgrade(2000, "worker", "ничего", 0, 5000, 0, "img/worker_avatar.png"),
-                new Upgrade(2000, "worker", "ничего", 0, 5000, 0, "img/worker_avatar.png"),
-                new Upgrade(2000, "worker", "ничего", 0, 5000, 0, "img/worker_avatar.png")
+                new Upgrade(2000, "worker", "ничего", 0, 5000, 0, "img/default_stalker.png"),
+                new Upgrade(2000, "worker", "ничего", 0, 5000, 0, "img/default_stalker.png"),
+                new Upgrade(2000, "worker", "ничего", 0, 5000, 0, "img/default_stalker.png"),
+                new Upgrade(2000, "worker", "ничего", 0, 5000, 0, "img/default_stalker.png"),
+                new Upgrade(2000, "worker", "ничего", 0, 5000, 0, "img/default_stalker.png")
         };
 
         // TODO: Only for debug!
