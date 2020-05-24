@@ -17,21 +17,11 @@ public class MainPresenter implements MainContract.Presenter {
         this.mRepository = repository;
     }
 
-
     @Override
     public void onStartGameButtonClicked() {
         mView.showScreenGame();
     }
 
-    @Override
-    public void onLoginButtonClicked() {
-        mView.showLoginScreen();
-    }
-
-    @Override
-    public void onSignUpButtonClicked() {
-        mView.showSignUpScreen();
-    }
 
     @Override
     public void onSettingsButtonClicked() {
@@ -46,21 +36,5 @@ public class MainPresenter implements MainContract.Presenter {
     @Override
     public void onLeaderboardButtonClicked() {
         mView.showLeaderboardScreen();
-    }
-
-    @Override
-    public void checkIsLoggedIn() {
-        mRepository.wasAuthorized(new BaseCallback() {
-            @Override
-            public void onSuccess() {
-                mView.hideAuthorizationButtons();
-            }
-
-            @Override
-            public void onError() {
-                // todo idk maybe highlight singup/login?
-                String hello  = "hello";
-            }
-        });
     }
 }
