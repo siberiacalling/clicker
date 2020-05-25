@@ -50,7 +50,7 @@ public class AccountView extends Fragment implements AccountContract.View {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.account, container, false);
+        mView = inflater.inflate(R.layout.fragment_account, container, false);
 
         this.showName();
         this.showEmail();

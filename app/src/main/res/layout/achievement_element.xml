@@ -14,20 +14,21 @@
         android:id="@+id/achievements_title"
         android:layout_width="match_parent"
         android:layout_height="40sp"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
         android:layout_gravity="center"
         android:layout_weight="0"
-        android:background="#7A2929"
+        android:background="@color/button_color"
         android:textAlignment="center"
         android:textSize="25sp"
-        tools:text="First money" />
+        tools:text="First money"
+        android:textColor="@color/text_color"/>
 
     <TextView
         android:id="@+id/achievements_description"
         android:layout_width="match_parent"
         android:layout_height="80sp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="0dp"
         android:layout_marginBottom="1dp"
         android:padding="10sp"
         android:layout_gravity="center"
@@ -36,19 +37,20 @@
         android:textSize="20sp"
         android:textAlignment="center"
         android:ellipsize="middle"
-        tools:text="ASasdasdasdasdassadasdasdasdasdasd"/>
+        tools:text="ASasdasdasdasdassadasdasdasdasdasd"
+        android:textColor="@color/text_color"/>
 
     <TextView
         android:id="@+id/achievements_progress"
         android:layout_width="match_parent"
         android:layout_height="30sp"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="10dp"
         android:layout_gravity="center"
         android:layout_weight="0"
         android:background="#1D3F6B"
-
         android:textSize="20sp"
         android:textAlignment="center"
-        tools:text="1232141"/>
+        tools:text="1232141"
+        android:textColor="@color/text_color"/>
 </LinearLayout>

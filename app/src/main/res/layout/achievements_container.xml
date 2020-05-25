@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/gradient_background">
 
     <TextView
         android:text="@string/achievements"
@@ -17,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:layout_marginTop="1dp"
-        android:background="#9F5A5353"/>
+        android:background="@color/delimiter_color"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/achievements_view"
