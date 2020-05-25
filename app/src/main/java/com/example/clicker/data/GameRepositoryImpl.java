@@ -30,7 +30,6 @@ public class GameRepositoryImpl implements GameContract.Repository, ShopContract
     private GameApi mGameApi;
     private UserApi mUserApi;
     private UpgradeDao mUpgradeDao;
-    private AchievementDao mAchievementDao;
     private PlayerRepository mPlayerRepository;
 
     private boolean noApiSyncYet = true; // scores
@@ -47,40 +46,6 @@ public class GameRepositoryImpl implements GameContract.Repository, ShopContract
         mUpgradeDao = DBRepository.from(context).getUpgradeDao();
         mPlayerRepository = ClickerApplication.from(context).getPlayerRepository();
     }
-
-    /*@Override
-    public void postScore(final int score, final BaseCallback callback) {
-        GameApi.ScorePlain scorePlain = new GameApi.ScorePlain();
-        scorePlain.score = score;
-
-        mGameApi.sync(scorePlain).enqueue(new Callback<GameApi.ScorePlain>() {
-            @Override
-            public void onResponse(Call<GameApi.ScorePlain> call, Response<GameApi.ScorePlain> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    GameApi.ScorePlain scorePlain1 = response.body();
-
-                    // todo validate?
-
-                    AppExecutors.getInstance().mainThread().execute(new Runnable() {
-                        @Override
-                        public void run() {
-                            callback.onSuccess();
-                        }
-                    });
-                }
-            }
-
-            @Override
-            public void onFailure(Call<GameApi.ScorePlain> call, Throwable t) {
-                AppExecutors.getInstance().mainThread().execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        callback.onError();
-                    }
-                });
-            }
-        });
-    }*/
 
     @Override
     public void setScore(int score, BaseCallback callback) {
@@ -154,6 +119,7 @@ public class GameRepositoryImpl implements GameContract.Repository, ShopContract
             }
         });
     }
+
 
     @Override
     public void saveScore(final ScoreCallback callback) {
@@ -362,23 +328,6 @@ public class GameRepositoryImpl implements GameContract.Repository, ShopContract
                 Log.e("GameRepositoryImpl", "buyUpgrade: onError when getScore");
             }
         });
-        /*buyUpgrade(worker, new BaseCallback() {
-            @Override
-            public void onSuccess() {
-                AppExecutors.getInstance().diskIO().execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        mUpgradeDao.upgradeWorker(worker.getId(), workerPicIds[worker.getCount()]);
-                    }
-                });
-                callback.onSuccess();
-            }
-
-            @Override
-            public void onError() {
-                callback.onError();
-            }
-        });*/
     }
 
     @Override

@@ -40,10 +40,6 @@ public class AppExecutors {
         return mDiskIO;
     }
 
-    public Executor networkIO() {
-        return mNetworkIO;
-    }
-
     public Executor mainThread() {
         return mMainThread;
     }

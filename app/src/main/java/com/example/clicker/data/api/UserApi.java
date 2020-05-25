@@ -15,14 +15,6 @@ public interface UserApi {
         public String username;
         public int score;
 
-        public String getUsername() {
-            return username;
-        }
-
-        public int getScore() {
-            return score;
-        }
-
         public UserPlain(int id, String username, int score) {
             this.id = id;
             this.username = username;
@@ -30,33 +22,10 @@ public interface UserApi {
         }
     }
 
-    class SortByScore implements Comparator<UserPlain> {
-        @Override
-        public int compare(UserPlain o1, UserPlain o2) {
-
-            int score1 = o1.score;
-            int score2 = o2.score;
-
-            return score2 - score1;
-        }
-    }
-
-    class User {
-        public String username;
-        public String password;
-
-        public User(String username, String password) {
-            this.username = username;
-            this.password = password;
-        }
-    }
 
     @GET("/user?limit=99&offset=0")
     Call<List<UserPlain>> getAll();
 
     @GET("/user/{id}")
     Call<UserPlain> get(@Path("id") int id);
-
-    @POST("/user")
-    Call<Void> register(@Body User user);
 }
