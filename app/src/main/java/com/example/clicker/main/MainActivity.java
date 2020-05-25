@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements Router, AppAction
         if (playerRepository.isMusicSoundState()) {
             Log.d(tag, "musicOnMainSound: soundOn");
             clearMusicPlayer();
-            musicPlayer = MediaPlayer.create(getApplicationContext(), R.raw.main_sound_128kbit);
+            musicPlayer = MediaPlayer.create(getApplicationContext(), R.raw.main);
             musicPlayer.start();
         } else {
             Log.d(tag, "musicOnMainSound: soundOff");
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements Router, AppAction
         if (playerRepository.isMusicSoundState()) {
             Log.d(tag, "musicOnGameSound: soundOn");
             clearMusicPlayer();
-            musicPlayer = MediaPlayer.create(getApplicationContext(), R.raw.game_sound);
+            musicPlayer = MediaPlayer.create(getApplicationContext(), R.raw.game);
             musicPlayer.setLooping(true);
             musicPlayer.start();
         } else {
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements Router, AppAction
         if (playerRepository.isMusicSoundState()) {
             Log.d(tag, "musicOnGameSound: soundOn");
             clearMusicPlayer();
-            musicPlayer = MediaPlayer.create(getApplicationContext(), R.raw.shop_sound);
+            musicPlayer = MediaPlayer.create(getApplicationContext(), R.raw.main);
             musicPlayer.setLooping(true);
             musicPlayer.start();
         } else {

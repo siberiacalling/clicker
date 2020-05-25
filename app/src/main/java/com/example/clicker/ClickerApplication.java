@@ -108,7 +108,7 @@ public class ClickerApplication extends Application {
         };
 
         // TODO: Only for debug!
-         mDbRepository.clearAllTables();
+//         mDbRepository.clearAllTables();
 
         List<Upgrade> upgrades = dao.allUpgrades();
         if (upgrades.isEmpty()) {
@@ -131,21 +131,18 @@ public class ClickerApplication extends Application {
         List<Achievement> achievements = achievementDao.all();
         if (achievements.isEmpty()) {
             Achievement[] basicAchievements = {
-                    new Achievement("click", "Continue, please", "10 clicks", 10, "clicks", ""),
-                    new Achievement("click", "Not enough", "100 clicks", 100, "clicks", ""),
-                    new Achievement("click", "Oh, my", "1000 clicks", 1000, "clicks", ""),
-                    new Achievement("click", "Touch me", "10000 clicks", 10000, "clicks", ""),
-                    new Achievement("click", "Is the screen broken?", "100000 clicks", 100000, "clicks", ""),
+                    new Achievement("click", "Inception", "1 click", 1, "clicks", ""),
+                    new Achievement("click", "From China with love", "100 clicks", 100, "clicks", ""),
+                    new Achievement("click", "This is a new virus!", "1000 clicks", 1000, "clicks", ""),
+                    new Achievement("click", "PANDEMIC!!!", "10000 clicks", 10000, "clicks", ""),
+                    new Achievement("click", "Successful self-isolation", "100000 clicks", 100000, "clicks", ""),
 
-                    new Achievement("sound", "Stop The Music", "From LENNE & THE LEE KINGS with Love", 1, "Off music", ""),
-                    new Achievement("sound", "DJ", "Scraaaaatch", 2, "Off/On music double", ""),
-
-                    new Achievement("money", "First money", "Thank you, mom", 1000, "$", ""),
-                    new Achievement("money", "Enough", "Lets buy macbook and go away", 5000, "$", ""),
-                    new Achievement("money", "It's money", "10000 $", 10000, "$", ""),
-                    new Achievement("money", "Good job", "Good boy", 20000, "$", ""),
-                    new Achievement("money", "Success", "Please, pay the workers", 100000, "$", ""),
-                    new Achievement("money", "Unicorn", "Congratulations! GAME OVER", 1000000000, "$", ""),
+                    new Achievement("money", "Own saving", "Put off from dinners", 1000, "$", ""),
+                    new Achievement("money", "Salary saving", "Salary came, cheers!", 5000, "$", ""),
+                    new Achievement("money", "Small business support", "Government loves you", 10000, "$", ""),
+                    new Achievement("money", "Second wave of help", "OH MY GOOOOOD, 20000", 20000, "$", ""),
+                    new Achievement("money", "Buy a vaccine", "Time to think...", 100000, "$", ""),
+                    new Achievement("money", "You'll never die", "Congratulations! GAME OVER", 1000000000, "$", ""),
             };
 
             achievementDao.insert(basicAchievements);
