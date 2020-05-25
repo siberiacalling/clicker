@@ -4,7 +4,6 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -13,10 +12,10 @@ import com.example.clicker.AppActions;
 import com.example.clicker.ClickerApplication;
 import com.example.clicker.R;
 import com.example.clicker.Router;
+import com.example.clicker.account.AccountView;
 import com.example.clicker.achievements.AchievementsView;
 import com.example.clicker.data.PlayerRepository;
 import com.example.clicker.game.GameView;
-import com.example.clicker.account.AccountView;
 import com.example.clicker.settings.SettingsView;
 import com.example.clicker.shop.ShopView;
 
@@ -131,6 +130,9 @@ public class MainActivity extends AppCompatActivity implements Router, AppAction
         Bundle bundle = new Bundle();
         bundle.putString("personEmail", personEmail);
         bundle.putString("personName", personName);
+        if (personPhoto == null){
+            personPhoto = Uri.parse("https://w7.pngwing.com/pngs/313/980/png-transparent-black-and-white-question-mark-inside-circle-logo-question-mark-icon-question-mark-text-trademark-logo.png");
+        }
         bundle.putString("uri", personPhoto.toString());
 
         AccountView accountView = new AccountView();
