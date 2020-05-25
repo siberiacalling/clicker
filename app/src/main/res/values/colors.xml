@@ -7,7 +7,11 @@
     <color name="gradient_start">#132637</color>
     <color name="gradient_end">#8c7c94</color>
     <color name="button_color">#132637</color>
-    <color name="delimiter_color">#9F5A5353</color>
+    <color name="delimiter_color">#8c7c94</color>
+
+    <color name="achievement_top">#132637</color>
+    <color name="achievement_middle">#412a3c</color>
+    <color name="achievement_bottom">#9F5A5353</color>
 
     <color name="colorPrimary">#6d4250</color>
     <color name="colorPrimaryDark">#00574B</color>

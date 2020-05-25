@@ -12,12 +12,13 @@
         android:text="@string/settings"
         android:textSize="40sp"
         android:textColor="@color/text_color"
+        android:textStyle="bold"
         />
 
     <View
         android:id="@+id/delimeter_view"
         android:layout_width="match_parent"
-        android:layout_height="3dp"
+        android:layout_height="6dp"
         android:layout_marginTop="1dp"
         android:background="@color/delimiter_color"/>
 
